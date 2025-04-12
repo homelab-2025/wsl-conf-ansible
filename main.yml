@@ -6,7 +6,7 @@
   become: true
   roles:
     - common
-    # - bashrc
+    - bashrc
     # - gitconfig
     # - helm
     # - terraform

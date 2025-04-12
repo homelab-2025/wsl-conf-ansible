@@ -1,0 +1,8 @@
+bashrc_aliases:
+  - line: "alias d='docker'"
+  - line: "alias dc='docker-compose'"
+  - line: "alias k='kubectl'"
+  - line: "alias h='helm'"
+  - line: "alias tf='terraform'"
+  - line: "alias bat='batcat'"
+  - line: "alias c='code'"

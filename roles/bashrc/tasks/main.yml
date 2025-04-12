@@ -1,0 +1,7 @@
+---
+- name: Add aliases to bashrc
+  ansible.builtin.lineinfile:
+    path: /home/enzo/.bashrc
+    line: '{{ item.line }}'
+    state: present
+  with_items: "{{ bashrc_aliases | default([]) }}"
