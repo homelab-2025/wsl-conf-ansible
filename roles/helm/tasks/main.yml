@@ -1,0 +1,37 @@
+---
+- name: Check if Helm repository key is already present
+  ansible.builtin.command:
+    cmd: gpg --list-keys --keyring /etc/apt/keyrings/helm.gpg
+  register: gpg_key_check
+  changed_when: false
+  failed_when: false
+
+- name: Download Helm repository key
+  ansible.builtin.get_url:
+    url: 'https://baltocdn.com/helm/signing.asc'
+    dest: /tmp/signing.asc
+    mode: '0644'
+  when: gpg_key_check.rc != 0
+
+- name: Add Helm repository key to apt keyring
+  ansible.builtin.command:
+    cmd: sudo gpg --dearmor -o /etc/apt/keyrings/helm.gpg /tmp/signing.asc
+    creates: /etc/apt/keyrings/helm.gpg
+  when: gpg_key_check.rc != 0
+
+- name: Remove /tmp/signing.asc
+  ansible.builtin.file:
+    path: /tmp/helm.asc
+    state: absent
+  when: gpg_key_check.rc != 0
+
+- name: Add Helm repository
+  ansible.builtin.apt_repository:
+    repo: 'deb [arch=amd64 signed-by=/etc/apt/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main'
+    state: present
+
+- name: Install Helm packages
+  ansible.builtin.apt:
+    name: helm
+    state: present
+    update_cache: true

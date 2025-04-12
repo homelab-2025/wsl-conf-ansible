@@ -8,7 +8,7 @@
     - common
     - bashrc
     - gitconfig
-    # - helm
-    # - terraform
+    - helm
+    - terraform
     # - gh
     #- glab
