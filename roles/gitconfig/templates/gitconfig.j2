@@ -1,0 +1,18 @@
+[user]
+    name = {{ git_user_name }}
+    email = {{ git_user_email }}
+
+[core]
+    editor = {{ git_editor }}
+    autocrlf = input
+
+[init]
+    defaultBranch = {{ git_default_branch }}
+
+[grep]
+	lineNumber = true
+
+[alias]
+{% for alias in git_aliases %}
+    {{ alias.name }} = {{ alias.value }}
+{% endfor %}

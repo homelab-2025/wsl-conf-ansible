@@ -1,0 +1,13 @@
+git_target_user: "enzo"
+git_user_home: "/home/{{ git_target_user }}"
+
+git_user_name: "Enzo G"
+git_user_email: "gl@enzog.mozmail.com"
+git_editor: "code --wait"
+git_default_branch: "main"
+
+git_aliases:
+  - name: cm
+    value: commit -m
+  - name: l
+    value: log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit

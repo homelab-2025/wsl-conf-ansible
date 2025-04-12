@@ -7,7 +7,7 @@
   roles:
     - common
     - bashrc
-    # - gitconfig
+    - gitconfig
     # - helm
     # - terraform
     # - gh
