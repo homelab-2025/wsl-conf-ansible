@@ -1,0 +1,26 @@
+common_packages:
+- name: build-essential
+- name: apt-transport-https
+- name: software-properties-common
+- name: ca-certificates
+- name: curl
+- name: wget
+- name: gpg
+- name: gnupg
+- name: lsb-release
+- name: git
+- name: make
+- name: nano
+- name: vim
+- name: default-jre
+- name: python3-full
+- name: python3-pip
+- name: python3-virtualenv
+- name: nodejs
+- name: npm
+- name: zsh
+- name: tmux
+- name: bat
+- name: fzf
+- name: jq
+- name: eza

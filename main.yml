@@ -5,7 +5,7 @@
   gather_facts: false
   become: true
   roles:
-    # - common
+    - common
     # - bashrc
     # - gitconfig
     # - helm
