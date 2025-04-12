@@ -1,0 +1,4 @@
+gitlab_cli_version: "v1.55.0"
+gitlab_cli_version_no_v: "{{ gitlab_cli_version | regex_replace('^v', '') }}"
+gitlab_cli_package: "glab_{{ gitlab_cli_version_no_v }}_linux_amd64.deb"
+gitlab_cli_url: "https://gitlab.com/gitlab-org/cli/-/releases/{{ gitlab_cli_version }}/downloads/{{ gitlab_cli_package }}"

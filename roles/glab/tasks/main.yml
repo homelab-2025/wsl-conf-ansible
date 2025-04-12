@@ -1,0 +1,24 @@
+---
+- name: Check if Glab is installed
+  ansible.builtin.command: dpkg-query -s glab
+  register: dpkg_check
+  changed_when: false
+  failed_when: false
+
+- name: Download glab
+  ansible.builtin.get_url:
+    url: "{{ gitlab_cli_url }}"
+    dest: "/tmp/{{ gitlab_cli_package }}"
+    mode: '0644'
+  when: dpkg_check.rc != 0
+
+- name: Install glab
+  ansible.builtin.apt:
+    deb: "/tmp/{{ gitlab_cli_package }}"
+  when: dpkg_check.rc != 0
+
+- name: Clean up deb glab
+  ansible.builtin.file:
+    path: "/tmp/{{ gitlab_cli_package }}"
+    state: absent
+  when: dpkg_check.rc != 0

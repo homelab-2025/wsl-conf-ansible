@@ -10,5 +10,5 @@
     - gitconfig
     - helm
     - terraform
-    # - gh
-    #- glab
+    - gh
+    - glab
