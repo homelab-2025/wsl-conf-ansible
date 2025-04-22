@@ -6,3 +6,4 @@ bashrc_aliases:
   - line: "alias tf='terraform'"
   - line: "alias bat='batcat'"
   - line: "alias c='code'"
+  - line: "alias refresh='source ~/.bashrc && hash -r && clear'"
