@@ -25,3 +25,4 @@ common_packages:
 - name: fzf
 - name: jq
 - name: eza
+- name: plocate
