@@ -12,6 +12,7 @@ common_packages:
 - name: make
 - name: nano
 - name: vim
+- name: tree
 - name: default-jre
 - name: python3-full
 - name: python3-pip
