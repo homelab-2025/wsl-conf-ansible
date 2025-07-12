@@ -1,4 +1,5 @@
 bashrc_aliases:
+  - line: "source <(kubectl completion bash)"
   - line: "alias d='docker'"
   - line: "alias dc='docker-compose'"
   - line: "alias k='kubectl'"
@@ -7,3 +8,4 @@ bashrc_aliases:
   - line: "alias bat='batcat'"
   - line: "alias c='code'"
   - line: "alias refresh='source ~/.bashrc && hash -r && clear'"
+  - line: "complete -F __start_kubectl k"
