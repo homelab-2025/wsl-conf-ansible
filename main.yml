@@ -14,3 +14,4 @@
     - glab
     - uv
     - kubectl
+    - k9s
