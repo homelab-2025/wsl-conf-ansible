@@ -9,3 +9,4 @@ bashrc_aliases:
   - line: "alias c='code'"
   - line: "alias refresh='source ~/.bashrc && hash -r && clear'"
   - line: "complete -F __start_kubectl k"
+  - line: "export KUBECONFIG=~/.kube/config-k0s"
