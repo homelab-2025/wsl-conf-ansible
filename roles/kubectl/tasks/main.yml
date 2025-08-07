@@ -1,0 +1,37 @@
+---
+- name: Check if Kubernetes GPG key is already present
+  ansible.builtin.command:
+    cmd: gpg --list-keys --keyring /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+  register: gpg_key_check
+  changed_when: false
+  failed_when: false
+
+- name: Download Kubernetes GPG key
+  ansible.builtin.get_url:
+    url: https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key
+    dest: /tmp/Release.key
+    mode: '0644'
+  when: gpg_key_check.rc != 0
+
+- name: Add Kubernetes GPG key to apt keyring
+  ansible.builtin.command:
+    cmd: sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/Release.key
+    creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+  when: gpg_key_check.rc != 0
+
+- name: Remove /tmp/Release.key
+  ansible.builtin.file:
+    path: /tmp/Release.key
+    state: absent
+  when: gpg_key_check.rc != 0
+
+- name: Add Kubernetes repository
+  ansible.builtin.apt_repository:
+    repo: 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /'
+    state: present
+
+- name: Install Kubectl packages
+  ansible.builtin.apt:
+    name: kubectl
+    state: present
+    update_cache: true
