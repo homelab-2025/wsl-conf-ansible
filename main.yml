@@ -15,3 +15,4 @@
     - uv
     - kubectl
     - k9s
+    - argocd
